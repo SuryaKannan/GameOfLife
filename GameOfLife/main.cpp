@@ -5,33 +5,36 @@
 #include <thread>
 #include <cstdlib>
 
-std::vector<std::vector<char>> createGameBoard(int rows, int cols);
 void printGameBoard(std::vector<std::vector<char>> gameBoard, int rows, int cols);
+std::vector<std::vector<char>> createGameBoard(int rows, int cols, int initial_row, int initial_col);
 void beginGame(std::vector<std::vector<char>> gameBoard, int rows, int cols, int refresh_time);
 
 int main() {
+	srand(time(NULL));
 	int rows = 50;
 	int cols = 80;
 	int inital_row = rand() % rows;
 	int initial_col = rand() % cols;
-	int refresh_time = 0.5; // seconds between print game screen
+	int refresh_time = 1; 
 
-	std::vector<std::vector<char>> gameBoard = createGameBoard(rows, cols);
+	std::vector<std::vector<char>> gameBoard = createGameBoard(rows, cols, inital_row,initial_col);
 	beginGame(gameBoard, rows, cols, refresh_time);
 }
 
 void beginGame(std::vector<std::vector<char>> gameBoard, int rows, int cols, int refresh_time) {
 	while (true) {
-		std::this_thread::sleep_for(std::chrono::seconds(1));
+		std::this_thread::sleep_for(std::chrono::seconds(refresh_time));
 		std::system("cls");
 		printGameBoard(gameBoard, rows, cols);
 	}
 }
 
-std::vector<std::vector<char>> createGameBoard(int rows, int cols) {
+std::vector<std::vector<char>> createGameBoard(int rows, int cols, int initial_row, int initial_col) {
 
 	std::vector<std::vector<char>> gameBoard;
-	gameBoard.assign(rows, std::vector < char >(cols, 'O'));
+	gameBoard.assign(rows, std::vector < char >(cols, 'x'));
+
+	gameBoard[initial_row][initial_col] = 'O';
 
 	return gameBoard;
 }
@@ -45,4 +48,3 @@ void printGameBoard(std::vector<std::vector<char>> gameBoard, int rows, int cols
 		std::cout << std::endl;
 	}
 }
-
