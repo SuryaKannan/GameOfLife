@@ -1,0 +1,34 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+		{
+            "type": "shell",
+            "label": "create bin directory",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "${workspaceFolder}/bin"
+            ],
+            "problemMatcher": []
+        },     
+        {
+            "type": "shell",
+            "label": "g++ build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-g",
+                "${workspaceFolder}/src/*.cpp",
+                "-o",
+                "${workspaceFolder}/bin/life",
+                "-I${workspaceFolder}/include"
+            ], 
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+} 

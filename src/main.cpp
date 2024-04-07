@@ -3,8 +3,8 @@
 
 int main() {
 	srand(time(NULL));
-	const int ROWS = 50;
-	const int COLS = 50;
+	const int ROWS = 20;
+	const int COLS = 20;
 	const int REFRESH_TIME = 500; // milliseconds
 	const int START_LIFE_COUNT = 200;
 
